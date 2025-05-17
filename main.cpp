@@ -37,7 +37,6 @@ double hit_sphere(const point3& center, double radius, const ray& r) {
 }
 
 
-
 color ray_color(const ray& r) {
     auto t = hit_sphere(point3(0,0,-1), 0.5, r);
     // point t at which point ray r hits the sphere  
