@@ -98,7 +98,8 @@ class camera {
 
             hit_record rec;
             
-            if (world.hit(r, interval(0, infinity), rec)) {
+            // 0.001 to resolve shadow acne caused by rounding errors
+            if (world.hit(r, interval(0.001, infinity), rec)) {
 
                 // v-- render colors by normals
                 // return 0.5 * (rec.normal + color(1,1,1));
