@@ -19,11 +19,6 @@ class camera {
             for (int j = 0; j < image_height; j++) {
                 std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
                 for (int i = 0; i < image_width; i++) {
-                    // auto pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
-                    // auto ray_direction = pixel_center - center;
-                    // ray r(center, ray_direction);
-        
-                    // color pixel_color = ray_color(r, world);
                     color pixel_color(0,0,0);
                     for (int sample = 0; sample < samples_per_pixel; sample++) {
                         ray r = get_ray(i,j);
@@ -105,7 +100,8 @@ class camera {
                 // return 0.5 * (rec.normal + color(1,1,1));
 
                 // diffuse material 0.0=black, 0.5=grey, 1.0=white
-                vec3 direction = random_on_hemisphere(rec.normal);
+                // lambertian sphere distribution
+                vec3 direction = rec.normal + random_unit_vector();
                 return 0.5 * ray_color(ray(rec.p, direction), depth-1, world);
             }
 
